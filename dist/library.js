@@ -4816,7 +4816,7 @@ var fetchExperiments = function fetchExperiments() {
 };
 
 function pushEvents(events) {
-  supabase.from("events").insert(events);
+  return supabase.from("events").insert(events);
 }
 
 function isURLmatches(pattern, url) {
@@ -4831,15 +4831,13 @@ function init(ip) {
   var url = getCurrentURL();
 
   var track = function track(action) {
-    return function () {
-      pushEvents({
-        id: uuid(),
-        url: url,
-        ip: ip,
-        action: action,
-        timestamp: new Date().toJSON()
-      });
-    };
+    pushEvents([{
+      id: uuid(),
+      url: url,
+      ip: ip,
+      action: action,
+      timestamp: new Date().toJSON()
+    }]);
   };
 
   function addConversionListener(_ref2) {
@@ -4850,7 +4848,11 @@ function init(ip) {
       case "click":
         var elements = Array.from(document.getElementsByClassName(trigger));
         elements.forEach(function (e) {
-          return e.addEventListener("click", track("click"));
+          e.addEventListener("click", function () {
+            return track("click");
+          }, {
+            once: true
+          });
         });
         break;
 

@@ -26,7 +26,7 @@ const fetchExperiments = () =>
     .then(({ data: experiments }) => experiments);
 
 function pushEvents(events) {
-  supabase.from("events").insert(events);
+  return supabase.from("events").insert(events);
 }
 
 function isURLmatches(pattern, url) {
@@ -39,21 +39,25 @@ function isURLmatches(pattern, url) {
 function init(ip) {
   const url = getCurrentURL();
 
-  const track = (action) => () => {
-    pushEvents({
-      id: uuid(),
-      url,
-      ip,
-      action,
-      timestamp: new Date().toJSON(),
-    });
+  const track = (action) => {
+    pushEvents([
+      {
+        id: uuid(),
+        url,
+        ip,
+        action,
+        timestamp: new Date().toJSON(),
+      },
+    ]);
   };
 
   function addConversionListener({ type, trigger }) {
     switch (type) {
       case "click":
         let elements = Array.from(document.getElementsByClassName(trigger));
-        elements.forEach((e) => e.addEventListener("click", track("click")));
+        elements.forEach((e) => {
+          e.addEventListener("click", () => track("click"), { once: true });
+        });
         break;
       case "view":
         if (isURLmatches(trigger, url)) track("view");
