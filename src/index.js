@@ -40,6 +40,7 @@ function init(ip) {
   let events = [];
   setInterval(async () => {
     const payload = events.slice();
+    if (!payload.length) return;
     pushEvents(payload).then(() => {
       events = events.filter((a) => payload.find((b) => a.uuid !== b.uuid));
     });
