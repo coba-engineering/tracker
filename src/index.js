@@ -39,17 +39,8 @@ function isURLmatches(pattern, url) {
 function init(ip) {
   const url = getCurrentURL();
 
-  let events = [];
-  setInterval(() => {
-    const payload = events.slice();
-    if (!payload.length) return;
-    pushEvents(payload).then(() => {
-      events = events.filter((a) => payload.find((b) => a.uuid !== b.uuid));
-    });
-  }, 3000);
-
   const track = (action) => () => {
-    events.push({
+    pushEvents({
       id: uuid(),
       url,
       ip,

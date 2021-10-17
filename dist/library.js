@@ -4829,22 +4829,10 @@ function isURLmatches(pattern, url) {
 
 function init(ip) {
   var url = getCurrentURL();
-  var events = [];
-  setInterval(function () {
-    var payload = events.slice();
-    if (!payload.length) return;
-    pushEvents(payload).then(function () {
-      events = events.filter(function (a) {
-        return payload.find(function (b) {
-          return a.uuid !== b.uuid;
-        });
-      });
-    });
-  }, 3000);
 
   var track = function track(action) {
     return function () {
-      events.push({
+      pushEvents({
         id: uuid(),
         url: url,
         ip: ip,
