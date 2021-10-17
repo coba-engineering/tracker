@@ -51,11 +51,11 @@ function init(ip) {
 
   function addConversionListener({ type, trigger }) {
     switch (type) {
-      case "BUTTON":
+      case "click":
         let elements = Array.from(document.getElementsByClassName(trigger));
         elements.forEach((e) => e.addEventListener("click", track("click")));
         break;
-      case "URL":
+      case "view":
         if (isURLmatches(trigger, url)) track("view");
         break;
 

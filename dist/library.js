@@ -4847,14 +4847,14 @@ function init(ip) {
         trigger = _ref2.trigger;
 
     switch (type) {
-      case "BUTTON":
+      case "click":
         var elements = Array.from(document.getElementsByClassName(trigger));
         elements.forEach(function (e) {
           return e.addEventListener("click", track("click"));
         });
         break;
 
-      case "URL":
+      case "view":
         if (isURLmatches(trigger, url)) track("view");
         break;
 
