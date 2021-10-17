@@ -38,7 +38,7 @@ function init(ip) {
   const url = getCurrentURL();
 
   let events = [];
-  setInterval(async () => {
+  setInterval(() => {
     const payload = events.slice();
     if (!payload.length) return;
     pushEvents(payload).then(() => {
