@@ -5650,6 +5650,15 @@ function init(ip) {
         switch (_context.prev = _context.next) {
           case 0:
             payload = events.slice();
+
+            if (payload.length) {
+              _context.next = 3;
+              break;
+            }
+
+            return _context.abrupt("return");
+
+          case 3:
             pushEvents(payload).then(function () {
               events = events.filter(function (a) {
                 return payload.find(function (b) {
@@ -5658,7 +5667,7 @@ function init(ip) {
               });
             });
 
-          case 2:
+          case 4:
           case "end":
             return _context.stop();
         }
