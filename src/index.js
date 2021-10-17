@@ -13,7 +13,10 @@ const f=(a,b)=>{for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4
 
 const uuid = () => f();
 
-const getCurrentURL = () => window.location.hostname + window.location.pathname;
+const getCurrentURL = () => {
+  const url = window.location.hostname + window.location.pathname;
+  return url.startsWith("www.") ? url.slice(4) : url;
+}
 
 const fetchExperiments = () =>
   supabase
@@ -27,9 +30,8 @@ function pushEvents(events) {
 }
 
 function isURLmatches(pattern, url) {
-  const candidate = url.startsWith("www.") ? url.slice(4) : url;
   const segments = pattern.split("/");
-  const b = candidate.split("/");
+  const b = url.split("/");
 
   return segments.every((segment, i) => b[i] === segment);
 }
