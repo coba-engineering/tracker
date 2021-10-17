@@ -4804,7 +4804,8 @@ var uuid = function uuid() {
 };
 
 var getCurrentURL = function getCurrentURL() {
-  return window.location.hostname + window.location.pathname;
+  var url = window.location.hostname + window.location.pathname;
+  return url.startsWith("www.") ? url.slice(4) : url;
 };
 
 var fetchExperiments = function fetchExperiments() {
@@ -4819,9 +4820,8 @@ function pushEvents(events) {
 }
 
 function isURLmatches(pattern, url) {
-  var candidate = url.startsWith("www.") ? url.slice(4) : url;
   var segments = pattern.split("/");
-  var b = candidate.split("/");
+  var b = url.split("/");
   return segments.every(function (segment, i) {
     return b[i] === segment;
   });
