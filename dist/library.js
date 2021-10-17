@@ -4863,10 +4863,8 @@ function init(ip) {
     }
   }
 
-  window.addEventListener("load", function () {
-    fetchExperiments().then(function (experiments) {
-      return experiments.forEach(addConversionListener);
-    });
+  fetchExperiments().then(function (experiments) {
+    return experiments.forEach(addConversionListener);
   });
 }
 

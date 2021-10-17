@@ -16,7 +16,7 @@ const uuid = () => f();
 const getCurrentURL = () => {
   const url = window.location.hostname + window.location.pathname;
   return url.startsWith("www.") ? url.slice(4) : url;
-}
+};
 
 const fetchExperiments = () =>
   supabase
@@ -64,11 +64,9 @@ function init(ip) {
     }
   }
 
-  window.addEventListener("load", () => {
-    fetchExperiments().then((experiments) =>
-      experiments.forEach(addConversionListener)
-    );
-  });
+  fetchExperiments().then((experiments) =>
+    experiments.forEach(addConversionListener)
+  );
 }
 
 fetch("https://api.ipify.org")
