@@ -4831,13 +4831,15 @@ function init(ip) {
   var url = getCurrentURL();
 
   var track = function track(action) {
-    pushEvents([{
+    var event = {
       id: uuid(),
       url: url,
       ip: ip,
       action: action,
       timestamp: new Date().toJSON()
-    }]);
+    };
+    console.log("tracking", event);
+    pushEvents([event]).then(console.log)["catch"](console.error);
   };
 
   function addConversionListener(_ref2) {

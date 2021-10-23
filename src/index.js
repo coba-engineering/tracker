@@ -40,15 +40,15 @@ function init(ip) {
   const url = getCurrentURL();
 
   const track = (action) => {
-    pushEvents([
-      {
-        id: uuid(),
-        url,
-        ip,
-        action,
-        timestamp: new Date().toJSON(),
-      },
-    ]);
+    const event = {
+      id: uuid(),
+      url,
+      ip,
+      action,
+      timestamp: new Date().toJSON(),
+    };
+    console.log("tracking", event);
+    pushEvents([event]).then(console.log).catch(console.error);
   };
 
   function addConversionListener({ type, trigger }) {
