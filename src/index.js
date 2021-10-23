@@ -21,7 +21,7 @@ const getCurrentURL = () => {
 const fetchExperiments = () =>
   supabase
     .from("experiments")
-    .select("*")
+    .select("*, redirects ( destination )")
     .filter("redirects.destination", "eq", getCurrentURL())
     .then(({ data: experiments }) => experiments);
 

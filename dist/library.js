@@ -4809,7 +4809,7 @@ var getCurrentURL = function getCurrentURL() {
 };
 
 var fetchExperiments = function fetchExperiments() {
-  return supabase.from("experiments").select("*").filter("redirects.destination", "eq", getCurrentURL()).then(function (_ref) {
+  return supabase.from("experiments").select("*, redirects ( destination )").filter("redirects.destination", "eq", getCurrentURL()).then(function (_ref) {
     var experiments = _ref.data;
     return experiments;
   });
