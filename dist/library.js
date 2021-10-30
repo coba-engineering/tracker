@@ -4805,7 +4805,9 @@ var uuid = function uuid() {
 
 var getCurrentURL = function getCurrentURL() {
   var url = window.location.hostname + window.location.pathname;
-  return url.startsWith("www.") ? url.slice(4) : url;
+  url = url.startsWith("www.") ? url.slice(4) : url;
+  url = url.endsWith("/") ? url.slice(0, 1) : url;
+  return url;
 };
 
 var fetchExperiments = function fetchExperiments() {
@@ -4819,13 +4821,11 @@ function pushEvents(events) {
   return supabase.from("events").insert(events);
 }
 
-function isURLmatches(pattern, url) {
-  var segments = pattern.split("/");
-  var b = url.split("/");
-  return segments.every(function (segment, i) {
-    return b[i] === segment;
-  });
-}
+var urlEquals = function urlEquals(a, b) {
+  var A = new URL(a);
+  var B = new URL(b);
+  return A.hostname === B.hostname && A.pathname.replace(/\//g, "") === B.pathname.replace(/\//g, "");
+};
 
 function init(ip) {
   var url = getCurrentURL();
@@ -4859,7 +4859,7 @@ function init(ip) {
         break;
 
       case "view":
-        if (isURLmatches(trigger, url)) track("view");
+        if (urlEquals(trigger, url)) track("view");
         break;
 
       default:

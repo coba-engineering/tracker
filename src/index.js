@@ -14,8 +14,10 @@ const f=(a,b)=>{for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4
 const uuid = () => f();
 
 const getCurrentURL = () => {
-  const url = window.location.hostname + window.location.pathname;
-  return url.startsWith("www.") ? url.slice(4) : url;
+  let url = window.location.hostname + window.location.pathname;
+  url = url.startsWith("www.") ? url.slice(4) : url;
+  url = url.endsWith("/") ? url.slice(0, 1) : url;
+  return url;
 };
 
 const fetchExperiments = () =>
@@ -29,12 +31,15 @@ function pushEvents(events) {
   return supabase.from("events").insert(events);
 }
 
-function isURLmatches(pattern, url) {
-  const segments = pattern.split("/");
-  const b = url.split("/");
+const urlEquals = (a, b) => {
+  let A = new URL(a);
+  let B = new URL(b);
 
-  return segments.every((segment, i) => b[i] === segment);
-}
+  return (
+    A.hostname === B.hostname &&
+    A.pathname.replace(/\//g, "") === B.pathname.replace(/\//g, "")
+  );
+};
 
 function init(ip) {
   const url = getCurrentURL();
@@ -59,8 +64,9 @@ function init(ip) {
           e.addEventListener("click", () => track("click"), { once: true });
         });
         break;
+
       case "view":
-        if (isURLmatches(trigger, url)) track("view");
+        if (urlEquals(trigger, url)) track("view");
         break;
 
       default:
