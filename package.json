@@ -1,7 +1,7 @@
 {
   "name": "@coba/tracker",
   "scripts": {
-    "build": "browserify src/index.js --s myLibraryName -t babelify -o dist/library.js && uglifyjs dist/library.js -c --output dist/library.min.js",
+    "build": "browserify src/index.js --s myLibraryName -t babelify -o dist/library.js && yarn minify",
     "minify": "uglifyjs dist/library.js -c --output dist/library.min.js",
     "watch": "watchify src/index.js -d --s myLibraryName -t babelify -o dist/library.js"
   },

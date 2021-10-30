@@ -13,11 +13,15 @@ const f=(a,b)=>{for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4
 
 const uuid = () => f();
 
-const getCurrentURL = () => {
-  let url = window.location.hostname + window.location.pathname;
+const normalize = (url) => {
   url = url.startsWith("www.") ? url.slice(4) : url;
   url = url.endsWith("/") ? url.slice(0, 1) : url;
   return url;
+};
+
+const getCurrentURL = () => {
+  let url = window.location.hostname + window.location.pathname;
+  return normalize(url);
 };
 
 const fetchExperiments = () =>
@@ -30,16 +34,6 @@ const fetchExperiments = () =>
 function pushEvents(events) {
   return supabase.from("events").insert(events);
 }
-
-const urlEquals = (a, b) => {
-  let A = new URL(a);
-  let B = new URL(b);
-
-  return (
-    A.hostname === B.hostname &&
-    A.pathname.replace(/\//g, "") === B.pathname.replace(/\//g, "")
-  );
-};
 
 function init(ip) {
   const url = getCurrentURL();
@@ -66,7 +60,7 @@ function init(ip) {
         break;
 
       case "view":
-        if (urlEquals(trigger, url)) track("view");
+        if (normalize(trigger) === normalize(url)) track("view");
         break;
 
       default:
