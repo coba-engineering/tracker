@@ -4805,7 +4805,7 @@ var uuid = function uuid() {
 
 var normalize = function normalize(url) {
   url = url.startsWith("www.") ? url.slice(4) : url;
-  url = url.endsWith("/") ? url.slice(0, 1) : url;
+  url = url.endsWith("/") ? url.slice(0, -1) : url;
   return url;
 };
 
