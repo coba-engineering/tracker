@@ -6,23 +6,13 @@ const supabaseKey =
   "jg1OCwiZXhwIjoxOTQ4NTU4ODU4fQ.uclyC8mUUCjXai6nlEyZAwDit1A0cDiqLrJCCChHsXI";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const EID = "";
-
-// prettier-ignore
-const f=(a,b)=>{for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b}
-
-const uuid = () => f();
-
 const normalize = (url) => {
   url = url.startsWith("www.") ? url.slice(4) : url;
   url = url.endsWith("/") ? url.slice(0, -1) : url;
   return url;
 };
 
-const getCurrentURL = () => {
-  let url = window.location.hostname + window.location.pathname;
-  return normalize(url);
-};
+const getCurrentURL = () => normalize(location.hostname + location.pathname);
 
 const fetchExperiments = () =>
   supabase
@@ -38,17 +28,19 @@ function pushEvents(events) {
 function init(ip) {
   const url = getCurrentURL();
 
-  const track = (action) => {
+  const track = (action, override) => {
     const event = {
-      id: uuid(),
       url,
       ip,
       action,
       timestamp: new Date().toJSON(),
+      ...override,
     };
     console.log("tracking", event);
-    pushEvents([event]).then(console.log).catch(console.error);
+    pushEvents([event]);
   };
+
+  setTimeout(() => track("view", { is_conversion: false }), 3000);
 
   function addConversionListener({ type, trigger }) {
     switch (type) {

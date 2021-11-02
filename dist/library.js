@@ -1,4 +1,31 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.myLibraryName = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+},{}],2:[function(require,module,exports){
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+
+module.exports = _interopRequireDefault;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+},{}],3:[function(require,module,exports){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -405,7 +432,7 @@ class GoTrueApi {
 }
 exports.default = GoTrueApi;
 
-},{"./lib/constants":4,"./lib/cookies":5,"./lib/fetch":6,"./lib/helpers":7}],2:[function(require,module,exports){
+},{"./lib/constants":6,"./lib/cookies":7,"./lib/fetch":8,"./lib/helpers":9}],4:[function(require,module,exports){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -994,7 +1021,7 @@ class GoTrueClient {
 }
 exports.default = GoTrueClient;
 
-},{"./GoTrueApi":1,"./lib/constants":4,"./lib/helpers":7,"./lib/polyfills":8}],3:[function(require,module,exports){
+},{"./GoTrueApi":3,"./lib/constants":6,"./lib/helpers":9,"./lib/polyfills":10}],5:[function(require,module,exports){
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -1017,7 +1044,7 @@ const GoTrueClient_1 = __importDefault(require("./GoTrueClient"));
 exports.GoTrueClient = GoTrueClient_1.default;
 __exportStar(require("./lib/types"), exports);
 
-},{"./GoTrueApi":1,"./GoTrueClient":2,"./lib/types":9}],4:[function(require,module,exports){
+},{"./GoTrueApi":3,"./GoTrueClient":4,"./lib/types":11}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.COOKIE_OPTIONS = exports.STORAGE_KEY = exports.EXPIRY_MARGIN = exports.DEFAULT_HEADERS = exports.AUDIENCE = exports.GOTRUE_URL = void 0;
@@ -1035,7 +1062,7 @@ exports.COOKIE_OPTIONS = {
     sameSite: 'lax',
 };
 
-},{"./version":10}],5:[function(require,module,exports){
+},{"./version":12}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteCookie = exports.setCookie = exports.setCookies = void 0;
@@ -1167,7 +1194,7 @@ function deleteCookie(req, res, name) {
 }
 exports.deleteCookie = deleteCookie;
 
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -1246,7 +1273,7 @@ function remove(url, body, options) {
 }
 exports.remove = remove;
 
-},{"cross-fetch":46}],7:[function(require,module,exports){
+},{"cross-fetch":48}],9:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getParameterByName = exports.isBrowser = exports.uuid = exports.expiresAt = void 0;
@@ -1276,7 +1303,7 @@ function getParameterByName(name, url) {
 }
 exports.getParameterByName = getParameterByName;
 
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 "use strict";
 // @ts-nocheck
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1305,18 +1332,18 @@ function polyfillGlobalThis() {
 }
 exports.polyfillGlobalThis = polyfillGlobalThis;
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.version = void 0;
 // generated by genversion
 exports.version = '1.18.0';
 
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -1374,7 +1401,7 @@ class PostgrestClient {
 }
 exports.default = PostgrestClient;
 
-},{"./lib/PostgrestQueryBuilder":14,"./lib/PostgrestRpcBuilder":15,"./lib/constants":17}],12:[function(require,module,exports){
+},{"./lib/PostgrestQueryBuilder":16,"./lib/PostgrestRpcBuilder":17,"./lib/constants":19}],14:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -1390,7 +1417,7 @@ exports.PostgrestQueryBuilder = PostgrestQueryBuilder_1.default;
 const types_1 = require("./lib/types");
 Object.defineProperty(exports, "PostgrestBuilder", { enumerable: true, get: function () { return types_1.PostgrestBuilder; } });
 
-},{"./PostgrestClient":11,"./lib/PostgrestFilterBuilder":13,"./lib/PostgrestQueryBuilder":14,"./lib/types":18}],13:[function(require,module,exports){
+},{"./PostgrestClient":13,"./lib/PostgrestFilterBuilder":15,"./lib/PostgrestQueryBuilder":16,"./lib/types":20}],15:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -1787,7 +1814,7 @@ class PostgrestFilterBuilder extends PostgrestTransformBuilder_1.default {
 }
 exports.default = PostgrestFilterBuilder;
 
-},{"./PostgrestTransformBuilder":16}],14:[function(require,module,exports){
+},{"./PostgrestTransformBuilder":18}],16:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -1914,7 +1941,7 @@ class PostgrestQueryBuilder extends types_1.PostgrestBuilder {
 }
 exports.default = PostgrestQueryBuilder;
 
-},{"./PostgrestFilterBuilder":13,"./types":18}],15:[function(require,module,exports){
+},{"./PostgrestFilterBuilder":15,"./types":20}],17:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -1956,7 +1983,7 @@ class PostgrestRpcBuilder extends types_1.PostgrestBuilder {
 }
 exports.default = PostgrestRpcBuilder;
 
-},{"./PostgrestFilterBuilder":13,"./types":18}],16:[function(require,module,exports){
+},{"./PostgrestFilterBuilder":15,"./types":20}],18:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const types_1 = require("./types");
@@ -2076,14 +2103,14 @@ class PostgrestTransformBuilder extends types_1.PostgrestBuilder {
 }
 exports.default = PostgrestTransformBuilder;
 
-},{"./types":18}],17:[function(require,module,exports){
+},{"./types":20}],19:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DEFAULT_HEADERS = void 0;
 const version_1 = require("./version");
 exports.DEFAULT_HEADERS = { 'X-Client-Info': `postgrest-js/${version_1.version}` };
 
-},{"./version":19}],18:[function(require,module,exports){
+},{"./version":21}],20:[function(require,module,exports){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -2195,14 +2222,14 @@ class PostgrestBuilder {
 }
 exports.PostgrestBuilder = PostgrestBuilder;
 
-},{"cross-fetch":46}],19:[function(require,module,exports){
+},{"cross-fetch":48}],21:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.version = void 0;
 // generated by genversion
 exports.version = '0.34.1';
 
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -2531,7 +2558,7 @@ class RealtimeClient {
 }
 exports.default = RealtimeClient;
 
-},{"./RealtimeSubscription":21,"./lib/constants":23,"./lib/serializer":25,"./lib/timer":26,"websocket":48}],21:[function(require,module,exports){
+},{"./RealtimeSubscription":23,"./lib/constants":25,"./lib/serializer":27,"./lib/timer":28,"websocket":50}],23:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -2722,7 +2749,7 @@ class RealtimeSubscription {
 }
 exports.default = RealtimeSubscription;
 
-},{"./lib/constants":23,"./lib/push":24,"./lib/timer":26}],22:[function(require,module,exports){
+},{"./lib/constants":25,"./lib/push":26,"./lib/timer":28}],24:[function(require,module,exports){
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -2755,7 +2782,7 @@ exports.RealtimeClient = RealtimeClient_1.default;
 const RealtimeSubscription_1 = __importDefault(require("./RealtimeSubscription"));
 exports.RealtimeSubscription = RealtimeSubscription_1.default;
 
-},{"./RealtimeClient":20,"./RealtimeSubscription":21,"./lib/transformers":27}],23:[function(require,module,exports){
+},{"./RealtimeClient":22,"./RealtimeSubscription":23,"./lib/transformers":29}],25:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TRANSPORTS = exports.CHANNEL_EVENTS = exports.CHANNEL_STATES = exports.SOCKET_STATES = exports.WS_CLOSE_NORMAL = exports.DEFAULT_TIMEOUT = exports.VSN = exports.DEFAULT_HEADERS = void 0;
@@ -2792,7 +2819,7 @@ var TRANSPORTS;
     TRANSPORTS["websocket"] = "websocket";
 })(TRANSPORTS = exports.TRANSPORTS || (exports.TRANSPORTS = {}));
 
-},{"./version":28}],24:[function(require,module,exports){
+},{"./version":30}],26:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("../lib/constants");
@@ -2892,7 +2919,7 @@ class Push {
 }
 exports.default = Push;
 
-},{"../lib/constants":23}],25:[function(require,module,exports){
+},{"../lib/constants":25}],27:[function(require,module,exports){
 "use strict";
 // This file draws heavily from https://github.com/phoenixframework/phoenix/commit/cf098e9cf7a44ee6479d31d911a97d3c7430c6fe
 // License: https://github.com/phoenixframework/phoenix/blob/master/LICENSE.md
@@ -2929,7 +2956,7 @@ class Serializer {
 }
 exports.default = Serializer;
 
-},{}],26:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
@@ -2968,7 +2995,7 @@ class Timer {
 }
 exports.default = Timer;
 
-},{}],27:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 "use strict";
 /**
  * Helpers to convert the change Payload into native JS types.
@@ -3190,14 +3217,14 @@ exports.toTimestampString = (stringValue) => {
     return stringValue.replace(' ', 'T');
 };
 
-},{}],28:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.version = void 0;
 // generated by genversion
 exports.version = '1.1.3';
 
-},{}],29:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SupabaseStorageClient = void 0;
@@ -3217,7 +3244,7 @@ class SupabaseStorageClient extends lib_1.StorageBucketApi {
 }
 exports.SupabaseStorageClient = SupabaseStorageClient;
 
-},{"./lib":35}],30:[function(require,module,exports){
+},{"./lib":37}],32:[function(require,module,exports){
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -3235,7 +3262,7 @@ const SupabaseStorageClient_1 = require("./SupabaseStorageClient");
 Object.defineProperty(exports, "SupabaseStorageClient", { enumerable: true, get: function () { return SupabaseStorageClient_1.SupabaseStorageClient; } });
 __exportStar(require("./lib/types"), exports);
 
-},{"./SupabaseStorageClient":29,"./lib/types":36}],31:[function(require,module,exports){
+},{"./SupabaseStorageClient":31,"./lib/types":38}],33:[function(require,module,exports){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -3354,7 +3381,7 @@ class StorageBucketApi {
 }
 exports.StorageBucketApi = StorageBucketApi;
 
-},{"./constants":33,"./fetch":34}],32:[function(require,module,exports){
+},{"./constants":35,"./fetch":36}],34:[function(require,module,exports){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -3615,14 +3642,14 @@ class StorageFileApi {
 }
 exports.StorageFileApi = StorageFileApi;
 
-},{"./fetch":34,"cross-fetch":46}],33:[function(require,module,exports){
+},{"./fetch":36,"cross-fetch":48}],35:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DEFAULT_HEADERS = void 0;
 const version_1 = require("./version");
 exports.DEFAULT_HEADERS = { 'X-Client-Info': `storage-js/${version_1.version}` };
 
-},{"./version":37}],34:[function(require,module,exports){
+},{"./version":39}],36:[function(require,module,exports){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -3701,7 +3728,7 @@ function remove(url, body, options, parameters) {
 }
 exports.remove = remove;
 
-},{"cross-fetch":46}],35:[function(require,module,exports){
+},{"cross-fetch":48}],37:[function(require,module,exports){
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -3719,16 +3746,16 @@ __exportStar(require("./StorageFileApi"), exports);
 __exportStar(require("./types"), exports);
 __exportStar(require("./constants"), exports);
 
-},{"./StorageBucketApi":31,"./StorageFileApi":32,"./constants":33,"./types":36}],36:[function(require,module,exports){
-arguments[4][9][0].apply(exports,arguments)
-},{"dup":9}],37:[function(require,module,exports){
+},{"./StorageBucketApi":33,"./StorageFileApi":34,"./constants":35,"./types":38}],38:[function(require,module,exports){
+arguments[4][11][0].apply(exports,arguments)
+},{"dup":11}],39:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.version = void 0;
 // generated by genversion
 exports.version = '0.0.0';
 
-},{}],38:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -3905,7 +3932,7 @@ class SupabaseClient {
 }
 exports.default = SupabaseClient;
 
-},{"./lib/SupabaseAuthClient":40,"./lib/SupabaseQueryBuilder":41,"./lib/constants":43,"./lib/helpers":44,"@supabase/postgrest-js":12,"@supabase/realtime-js":22,"@supabase/storage-js":30}],39:[function(require,module,exports){
+},{"./lib/SupabaseAuthClient":42,"./lib/SupabaseQueryBuilder":43,"./lib/constants":45,"./lib/helpers":46,"@supabase/postgrest-js":14,"@supabase/realtime-js":24,"@supabase/storage-js":32}],41:[function(require,module,exports){
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -3934,7 +3961,7 @@ const createClient = (supabaseUrl, supabaseKey, options) => {
 };
 exports.createClient = createClient;
 
-},{"./SupabaseClient":38,"@supabase/gotrue-js":3,"@supabase/realtime-js":22}],40:[function(require,module,exports){
+},{"./SupabaseClient":40,"@supabase/gotrue-js":5,"@supabase/realtime-js":24}],42:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SupabaseAuthClient = void 0;
@@ -3946,7 +3973,7 @@ class SupabaseAuthClient extends gotrue_js_1.GoTrueClient {
 }
 exports.SupabaseAuthClient = SupabaseAuthClient;
 
-},{"@supabase/gotrue-js":3}],41:[function(require,module,exports){
+},{"@supabase/gotrue-js":5}],43:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SupabaseQueryBuilder = void 0;
@@ -3972,7 +3999,7 @@ class SupabaseQueryBuilder extends postgrest_js_1.PostgrestQueryBuilder {
 }
 exports.SupabaseQueryBuilder = SupabaseQueryBuilder;
 
-},{"./SupabaseRealtimeClient":42,"@supabase/postgrest-js":12}],42:[function(require,module,exports){
+},{"./SupabaseRealtimeClient":44,"@supabase/postgrest-js":14}],44:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SupabaseRealtimeClient = void 0;
@@ -4037,7 +4064,7 @@ class SupabaseRealtimeClient {
 }
 exports.SupabaseRealtimeClient = SupabaseRealtimeClient;
 
-},{"@supabase/realtime-js":22}],43:[function(require,module,exports){
+},{"@supabase/realtime-js":24}],45:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DEFAULT_HEADERS = void 0;
@@ -4045,7 +4072,7 @@ exports.DEFAULT_HEADERS = void 0;
 const version_1 = require("./version");
 exports.DEFAULT_HEADERS = { 'X-Client-Info': `supabase-js/${version_1.version}` };
 
-},{"./version":45}],44:[function(require,module,exports){
+},{"./version":47}],46:[function(require,module,exports){
 "use strict";
 // helpers.ts
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -4062,14 +4089,14 @@ function stripTrailingSlash(url) {
 }
 exports.stripTrailingSlash = stripTrailingSlash;
 
-},{}],45:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.version = void 0;
 // generated by genversion
 exports.version = '1.24.0';
 
-},{}],46:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 var global = typeof self !== 'undefined' ? self : this;
 var __self__ = (function () {
 function F() {
@@ -4625,7 +4652,7 @@ exports.Request = ctx.Request
 exports.Response = ctx.Response
 module.exports = exports
 
-},{}],47:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 var naiveFallback = function () {
 	if (typeof self === "object" && self) return self;
 	if (typeof window === "object" && window) return window;
@@ -4662,7 +4689,7 @@ module.exports = (function () {
 	}
 })();
 
-},{}],48:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 var _globalThis;
 if (typeof globalThis === 'object') {
 	_globalThis = globalThis;
@@ -4718,10 +4745,10 @@ module.exports = {
     'version'      : websocket_version
 };
 
-},{"./version":49,"es5-ext/global":47}],49:[function(require,module,exports){
+},{"./version":51,"es5-ext/global":49}],51:[function(require,module,exports){
 module.exports = require('../package.json').version;
 
-},{"../package.json":50}],50:[function(require,module,exports){
+},{"../package.json":52}],52:[function(require,module,exports){
 module.exports={
   "name": "websocket",
   "description": "Websocket Client & Server Library implementing the WebSocket protocol as specified in RFC 6455.",
@@ -4781,27 +4808,22 @@ module.exports={
   "license": "Apache-2.0"
 }
 
-},{}],51:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
 var _supabaseJs = require("@supabase/supabase-js");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var supabaseUrl = "https://yjjqcbwwpdxdbnyhbwme.supabase.co";
 var supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMjk4M" + "jg1OCwiZXhwIjoxOTQ4NTU4ODU4fQ.uclyC8mUUCjXai6nlEyZAwDit1A0cDiqLrJCCChHsXI";
 var supabase = (0, _supabaseJs.createClient)(supabaseUrl, supabaseKey);
-var EID = ""; // prettier-ignore
-
-var f = function f(a, b) {
-  for (b = a = ''; a++ < 36; b += a * 51 & 52 ? (a ^ 15 ? 8 ^ Math.random() * (a ^ 20 ? 16 : 4) : 4).toString(16) : '-') {
-    ;
-  }
-
-  return b;
-};
-
-var uuid = function uuid() {
-  return f();
-};
 
 var normalize = function normalize(url) {
   url = url.startsWith("www.") ? url.slice(4) : url;
@@ -4810,8 +4832,7 @@ var normalize = function normalize(url) {
 };
 
 var getCurrentURL = function getCurrentURL() {
-  var url = window.location.hostname + window.location.pathname;
-  return normalize(url);
+  return normalize(location.hostname + location.pathname);
 };
 
 var fetchExperiments = function fetchExperiments() {
@@ -4828,17 +4849,23 @@ function pushEvents(events) {
 function init(ip) {
   var url = getCurrentURL();
 
-  var track = function track(action) {
-    var event = {
-      id: uuid(),
+  var track = function track(action, override) {
+    var event = _objectSpread({
       url: url,
       ip: ip,
       action: action,
       timestamp: new Date().toJSON()
-    };
+    }, override);
+
     console.log("tracking", event);
-    pushEvents([event]).then(console.log)["catch"](console.error);
+    pushEvents([event]);
   };
+
+  setTimeout(function () {
+    return track("view", {
+      is_conversion: false
+    });
+  }, 3000);
 
   function addConversionListener(_ref2) {
     var type = _ref2.type,
@@ -4876,5 +4903,5 @@ fetch("https://api.ipify.org").then(function (r) {
   return init(ip);
 });
 
-},{"@supabase/supabase-js":39}]},{},[51])(51)
+},{"@babel/runtime/helpers/defineProperty":1,"@babel/runtime/helpers/interopRequireDefault":2,"@supabase/supabase-js":41}]},{},[53])(53)
 });
