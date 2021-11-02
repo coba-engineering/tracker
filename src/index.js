@@ -1,10 +1,17 @@
-import { createClient } from "@supabase/supabase-js";
+const SUPABASE_HOST = "https://yjjqcbwwpdxdbnyhbwme.supabase.co/rest/v1/";
 
-const supabaseUrl = "https://yjjqcbwwpdxdbnyhbwme.supabase.co";
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMjk4M" +
-  "jg1OCwiZXhwIjoxOTQ4NTU4ODU4fQ.uclyC8mUUCjXai6nlEyZAwDit1A0cDiqLrJCCChHsXI";
-const supabase = createClient(supabaseUrl, supabaseKey);
+// prettier-ignore
+function supabase(endpoint, body) {
+  return fetch(SUPABASE_HOST + endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMjk4Mjg1OCwiZXhwIjoxOTQ4NTU4ODU4fQ.uclyC8mUUCjXai6nlEyZAwDit1A0cDiqLrJCCChHsXI",
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMjk4Mjg1OCwiZXhwIjoxOTQ4NTU4ODU4fQ.uclyC8mUUCjXai6nlEyZAwDit1A0cDiqLrJCCChHsXI",
+    },
+    body: JSON.stringify(body),
+  });
+}
 
 const normalize = (url) => {
   url = url.startsWith("www.") ? url.slice(4) : url;
@@ -12,23 +19,13 @@ const normalize = (url) => {
   return url;
 };
 
-const getCurrentURL = () => normalize(location.hostname + location.pathname);
+const url = normalize(location.hostname + location.pathname);
 
-const fetchExperiments = () =>
-  supabase
-    .from("experiments")
-    .select("*, redirects ( destination )")
-    .filter("redirects.destination", "eq", getCurrentURL())
-    .then(({ data: experiments }) => experiments);
-
-function pushEvents(events) {
-  return supabase.from("events").insert(events);
-}
+const fetchExperiments = () => supabase("rpc/get_experiments", { url });
+const pushEvents = (events) => supabase("events", events);
 
 function init(ip) {
-  const url = getCurrentURL();
-
-  const track = (action, override) => {
+  function track(action, override) {
     const event = {
       url,
       ip,
@@ -38,9 +35,7 @@ function init(ip) {
     };
     console.log("tracking", event);
     pushEvents([event]);
-  };
-
-  setTimeout(() => track("view", { is_conversion: false }), 3000);
+  }
 
   function addConversionListener({ type, trigger }) {
     switch (type) {
@@ -52,13 +47,15 @@ function init(ip) {
         break;
 
       case "view":
-        if (normalize(trigger) === normalize(url)) track("view");
+        if (normalize(trigger) === url) track("view");
         break;
 
       default:
         break;
     }
   }
+
+  setTimeout(() => track("view", { is_conversion: false }), 3000);
 
   fetchExperiments().then((experiments) =>
     experiments.forEach(addConversionListener)
