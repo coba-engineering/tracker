@@ -110,7 +110,7 @@ function init(ip) {
     return track("view", {
       is_conversion: false
     });
-  }, 3000);
+  }, 1000);
   fetchExperiments().then(function (experiments) {
     return experiments.forEach(addConversionListener);
   });

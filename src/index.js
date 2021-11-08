@@ -55,7 +55,7 @@ function init(ip) {
     }
   }
 
-  setTimeout(() => track("view", { is_conversion: false }), 3000);
+  setTimeout(() => track("view", { is_conversion: false }), 1000);
 
   fetchExperiments().then((experiments) =>
     experiments.forEach(addConversionListener)
