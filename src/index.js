@@ -57,9 +57,9 @@ function init(ip) {
 
   setTimeout(() => track("view", { is_conversion: false }), 1000);
 
-  fetchExperiments().then((experiments) =>
-    experiments.forEach(addConversionListener)
-  );
+  fetchExperiments()
+    .then((r) => r.json())
+    .then((experiments) => experiments.forEach(addConversionListener));
 }
 
 fetch("https://api.ipify.org")
