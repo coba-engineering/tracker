@@ -1,9 +1,7 @@
 {
   "name": "@coba/tracker",
   "scripts": {
-    "build": "browserify src/index.js --s myLibraryName -t babelify -o dist/library.js && yarn minify",
-    "minify": "uglifyjs dist/library.js -c --output dist/library.min.js",
-    "watch": "watchify src/index.js -d --s myLibraryName -t babelify -o dist/library.js"
+    "build": "rollup -c"
   },
   "version": "1.0.0",
   "description": "A boilerplate for building standalone Javascript libraries",
@@ -13,16 +11,9 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.49",
-    "@babel/plugin-transform-runtime": "^7.15.8",
-    "@babel/preset-env": "^7.15.8",
-    "@babel/runtime": "^7.15.4",
-    "babelify": "^9.0.0",
-    "browserify": "^16.2.2",
-    "uglify-js": "^3.3.28",
-    "watchify": "^3.11.0"
-  },
-  "dependencies": {
-    "@supabase/supabase-js": "^1.24.0"
+    "@supabase/supabase-js": "^1.24.0",
+    "prettier": "^2.4.1",
+    "rollup": "^2.60.0",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }
