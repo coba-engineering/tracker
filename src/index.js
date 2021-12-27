@@ -50,6 +50,11 @@ function init(ip) {
         if (normalize(trigger) === url) track("view");
         break;
 
+      case "wpcf7":
+        let form = document.querySelector(".wpcf7");
+        form.addEventListener("wpcf7submit", () => track("wpcf7"), false);
+        break;
+
       default:
         break;
     }
